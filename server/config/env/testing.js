@@ -21,7 +21,7 @@
 
 module.exports = {
 
-    port: process.env.TEST_SERVER_PORT||process.env.PORT||4000,
+    port: process.env.TEST_SERVER_PORT,
     hookTimeout: 60000, //60 seconds
 
     /**************************************************************************
