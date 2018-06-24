@@ -1,0 +1,56 @@
+{
+  "name": "",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "async": "^2.6.1",
+    "axios": "0.18.0",
+    "babel-plugin-css-modules-transform": "^1.6.1",
+    "babel-plugin-transform-imports": "^1.5.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.1.1",
+    "bootstrap": "^4.1.1",
+    "chai": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-promise": "^3.7.0",
+    "expect": "^22.4.3",
+    "font-awesome": "^4.7.0",
+    "fs-extra": "^6.0.1",
+    "lodash": "^4.17.10",
+    "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.4"
+  },
+  "scripts": {
+    "build-css": "node ./node_modules/node-sass-chokidar/bin/node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node ./node_modules/node-sass-chokidar/bin/node-sass-chokidar src/ -o src/ --watch --recursive",
+    "dev-client": "HOST=0.0.0.0 node ./node_modules/react-scripts/bin/react-scripts.js start",
+    "server": "pm2 delete cra-sails; pm2 start ./ecosystem.config.yml --only cra-sails",
+    "server-watch": "pm2 delete cra-sails; pm2 start ./ecosystem.config.yml --only cra-sails-watch",
+    "init": "tidil init",
+    "prod": "npm run docker",
+    "dev": "npm run server-watch && tidil check-server && npm run dev-client & npm run watch-css",
+    "start": "npm run dev",
+    "test-all-ci": "tidil test-all",
+    "docker": "tidil docker run",
+    "test": "DEBUG=axios ./node_modules/react-scripts/bin/react-scripts.js test --env=jsdom",
+    "mysql": "docker stop local-mysql-server ; docker rm local-mysql-server ; docker run --name local-mysql-server -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=cra-sails-local -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.74.0",
+    "node-sass-chokidar": "^1.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/etidbury/cra-sails-boilerplate.git"
+  },
+  "author": "edwardtidbury",
+  "engines": {
+    "node": ">=10.0"
+  }
+}
